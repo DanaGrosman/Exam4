@@ -2,13 +2,9 @@ package ajbc.exam4;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Runner {
 
@@ -65,9 +61,8 @@ public class Runner {
 
 		List<List<Tent>> tentsInRangeOfHeight = mapTentsByHeights.entrySet().stream()
 				.filter(entry -> entry.getKey() >= minHeight && entry.getKey() <= maxHeight)
-				.map(entry -> entry.getValue())
-				.collect(Collectors.toList());
-				
+				.map(entry -> entry.getValue()).collect(Collectors.toList());
+
 		return tentsInRangeOfHeight.stream().flatMap(List::stream).collect(Collectors.toList());
 	}
 
@@ -87,8 +82,8 @@ public class Runner {
 		return tents.stream().filter(tent -> tent.getNumOfPeople() >= num).collect(Collectors.toList());
 	}
 
-	private static List<Tent> sortTentsByAreas(ArrayList<Tent> tents) {
-		return tents.stream().sorted(Comparator.comparing(Tent::getArea)).collect(Collectors.toList());
+	private static List<Tent> sortTentsByAreas(ArrayList<Tent> tents) {		
+		return tents.stream().sorted(Comparator.comparing(tent -> tent.getLength() * tent.getWidth())).collect(Collectors.toList());
 	}
 
 }

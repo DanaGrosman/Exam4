@@ -29,10 +29,6 @@ public class Tent {
 	public double getHeight() {
 		return height;
 	}
-	
-	public double getArea() {
-		return width*length;
-	}
 
 	@Override
 	public String toString() {
